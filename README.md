@@ -19,6 +19,10 @@ This repository contains useful examples of Terraform code.
     key=$(cat ~/.ssh/id_rsa.pub)
     echo "ssh_public_key = \"${key}\"" > key.auto.tfvars
 
+    # edit the main.tf file and set "count = 1" on the modules that you want
+    # to use
+    vi main.tf
+
     terraform init
     terraform plan
     terraform apply
