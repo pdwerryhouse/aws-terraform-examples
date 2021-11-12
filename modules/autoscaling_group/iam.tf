@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "publish" {
   name = "${var.name}-${var.env}-sns-publish-policy"
   path = "/"
-  description = "blah"
+  description = "SNS Publish policy for ${var.name}-${var.env}"
 
   policy = <<EOF
 {
