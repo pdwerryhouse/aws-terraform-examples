@@ -88,6 +88,17 @@ resource "aws_autoscaling_group" "asg" {
   }
 }
 
+resource "aws_autoscaling_lifecycle_hook" "foobar" {
+  name                   = "foobar"
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+  default_result         = "CONTINUE"
+  heartbeat_timeout      = 2000
+  lifecycle_transition   = "autoscaling:EC2_INSTANCE_TERMINATING"
+
+  notification_target_arn = aws_sns_topic.sns.id
+  role_arn                = aws_iam_role.publish.arn
+}
+
 resource "aws_security_group" "asg" {
   name = "${var.name}-${var.env}-sg"
   vpc_id = var.vpc_id

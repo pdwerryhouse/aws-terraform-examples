@@ -4,6 +4,9 @@
 This example creates a launch template, a security group and an
 autoscaling group, which will launch an Ubuntu 20.04 Linux EC2 instance.
 
+It also creates an SNS topic, with a demonstration of a lifecycle hook; a
+notification is published whenever an EC2 instance is terminated.
+
 ## Parameters
 
 | Parameter        | Description                             |
