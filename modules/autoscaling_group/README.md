@@ -13,6 +13,7 @@ notification is published whenever an EC2 instance is terminated.
 |------------------|-----------------------------------------|
 | env              | Environment name ('dev', 'prod', etc)   |
 | desired_capacity | Desired number of instances             |
+| encrypt_sns      | Whether to encrypt the SNS topic or not |
 | instance_type    | EC2 instance types                      |
 | max_size         | Max size of autoscaling group           |
 | min_size         | Min size of autoscaling group           |
@@ -30,6 +31,7 @@ notification is published whenever an EC2 instance is terminated.
     
       name = "terraform-test"
       env = "dev"
+      encrypt_sns = false
       instance_type = "t3a.nano"
       ssh_key_name = "aws"
       spot_price = "0.86"

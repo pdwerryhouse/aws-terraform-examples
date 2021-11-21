@@ -1,10 +1,10 @@
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_key_pair" "ssh_key" {
   key_name   = "${var.name}-${var.env}-key"
   public_key = var.ssh_public_key
 }
-
-data "aws_caller_identity" "current" {}
 
 module "network" {
   source = "../../modules/network"
@@ -31,10 +31,12 @@ module "autoscaling_group" {
 
   name = var.name
   env = var.env
-  desired_capacity = 0
+  aws_account_id = data.aws_caller_identity.current.account_id
+  desired_capacity = 1
+  encrypt_sns = false
   instance_type = "t3a.nano"
-  max_size = 0
-  min_size = 0
+  max_size = 1
+  min_size = 1
   ssh_key_name = aws_key_pair.ssh_key.key_name
   spot_price = ""
   subnets = module.network.public_subnet_ids
@@ -62,5 +64,13 @@ module "ecs_with_alb" {
   vpc_id = module.network.vpc_id
 
   depends_on = [ module.network ]
+}
+
+module "cicd" {
+  count = 0
+  source = "../../modules/cicd"
+
+  name = var.name
+  env = var.env
 }
 

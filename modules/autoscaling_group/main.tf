@@ -88,8 +88,8 @@ resource "aws_autoscaling_group" "asg" {
   }
 }
 
-resource "aws_autoscaling_lifecycle_hook" "foobar" {
-  name                   = "foobar"
+resource "aws_autoscaling_lifecycle_hook" "terminate_hook" {
+  name                   = "terminate-hook"
   autoscaling_group_name = aws_autoscaling_group.asg.name
   default_result         = "CONTINUE"
   heartbeat_timeout      = 2000

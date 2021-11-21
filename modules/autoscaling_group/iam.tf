@@ -18,6 +18,13 @@ resource "aws_iam_policy" "publish" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kms:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
         "logs:*"
       ]
     }

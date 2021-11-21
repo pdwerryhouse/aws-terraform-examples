@@ -1,4 +1,6 @@
+variable "aws_account_id"     { }
 variable "env"                { }
+variable "encrypt_sns"        { default = false }
 variable "instance_type"      { default = "t3a.nano" }
 variable "ssh_key_name"       { }
 variable "desired_capacity"   { default = "0" }
